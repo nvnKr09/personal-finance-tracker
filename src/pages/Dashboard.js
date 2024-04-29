@@ -142,7 +142,7 @@ const Dashboard = () => {
       });
       setTransactions(transactionArray);
       console.log("transactionArray: ", transactionArray);
-      toast.success("Transactions Fetched!");
+      // toast.success("Transactions Fetched!");
     }
     setLoading(false);
   }

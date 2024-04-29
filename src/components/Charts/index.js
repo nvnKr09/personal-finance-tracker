@@ -22,7 +22,7 @@ const ChartComponent = ({ sortedTransactions }) => {
     }
     return acc;
   }, {});
-  console.log(finalSpendings);
+  // console.log(finalSpendings);
   //   Hardcoded logic for pie chart
   //   let newSpendings = [
   //     {

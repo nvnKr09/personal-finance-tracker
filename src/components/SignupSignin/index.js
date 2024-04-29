@@ -34,7 +34,7 @@ const SignupSignin = () => {
             // Signed up
             const user = userCredential.user;
             // console.log("user >>>", user);
-            toast.success("User Created");
+            // toast.success("User Created");
             setLoading(false);
             setName("");
             setEmail("");
@@ -108,7 +108,7 @@ const SignupSignin = () => {
           photoURL: user.photoURL? user.photoURL : "",
           createdAt: new Date(),
         });
-        toast.success("Doc created");
+        // toast.success("Doc created");
       } catch (error) {
         toast.error(error.message);
       }

@@ -1,5 +1,5 @@
 import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
-import React from "react";
+import React, { useState } from "react";
 
 const AddIncomeModal = ({
   isIncomeModalVisible,
@@ -8,6 +8,20 @@ const AddIncomeModal = ({
 }) => {
 
   const [form] = Form.useForm();
+  const [showCustomTagInput, setShowCustomTagInput] = useState(false);
+
+  const handleTagChange = (value) => {
+    setShowCustomTagInput(value === "other");
+  };
+
+  const handleFinish = (values) => {
+    if (values.tag === "other" && values.customTag) {
+      values.tag = values.customTag;
+    }
+    onFinish(values, "income");
+    form.resetFields();
+    setShowCustomTagInput(false);
+  };
 
   return (
     <Modal
@@ -20,10 +34,7 @@ const AddIncomeModal = ({
       <Form
         form={form}
         layout="vertical"
-        onFinish={(values) => {
-          onFinish(values, "income");
-          form.resetFields();
-        }}
+        onFinish={handleFinish}
       >
         <Form.Item
           style={{ fontWeight: 600 }}
@@ -75,12 +86,18 @@ const AddIncomeModal = ({
             },
           ]}
         >
-          <Select className="select-input-2">
+          <Select className="select-input-2" onChange={handleTagChange}>
             <Select.Option value="salary">Salary</Select.Option>
             <Select.Option value="freelance">Freelance</Select.Option>
             <Select.Option value="investment">Investment</Select.Option>
+            <Select.Option value="other">Other</Select.Option>
           </Select>
         </Form.Item>
+        {showCustomTagInput && (
+          <Form.Item label="Custom Tag" name="customTag" rules={[{required:true, message:"Please enter custom tag!"}]}>
+            <Input placeholder="Enter custom tag" />
+          </Form.Item>
+        )}
         <Form.Item>
           <Button className="btn btn-blue" type="" htmlType="submit">
             Add Income

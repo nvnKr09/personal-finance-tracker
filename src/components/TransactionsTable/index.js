@@ -96,7 +96,7 @@ const TransactionsTable = ({ transactions, addTransaction, fetchTransactions }) 
                 }
             }
         });
-        toast.success("All transaction Added");
+        toast.success("All transactions Added");
         fetchTransactions();
         event.target.files = null;
     } catch (error) {
